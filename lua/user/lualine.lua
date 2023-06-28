@@ -330,7 +330,7 @@ local spaces = {
     end
 
     -- TODO: update codicons and use their indent
-    return hl_str(" ", "SLSep") .. hl_str(" " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
+    return hl_str(" ", "SLSep") .. hl_str("󰌒 " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
   end,
   padding = 0,
   -- separator = "%#SLSeparator#" .. " │" .. "%*",
@@ -434,6 +434,14 @@ local location = {
   padding = 0,
 }
 
+local encoding = {
+  "encoding",
+  fmt = function(str)
+    return hl_str(" ", "SLSep") .. hl_str(str, "SLLocation") .. hl_str("", "SLSep")
+  end,
+  padding = 0,
+}
+
 lualine.setup {
   options = {
     globalstatus = true,
@@ -453,7 +461,7 @@ lualine.setup {
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
-    lualine_x = { lanuage_server, spaces, filetype },
+    lualine_x = { lanuage_server, spaces, filetype, encoding },
     lualine_y = {},
     lualine_z = { location, progress },
   },
