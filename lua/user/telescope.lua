@@ -3,9 +3,10 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
-telescope.load_extension "media_files"
-local icons = require "user.icons"
+local actions = require("telescope.actions")
+telescope.load_extension("media_files")
+telescope.load_extension("vim_bookmarks")
+local icons = require("user.icons")
 
 telescope.setup {
   defaults = {

@@ -40,6 +40,7 @@ return lazy.setup {
 
   -- Debugging
   "mfussenegger/nvim-dap",
+  "rcarriga/nvim-dap-ui",
 
   -- Completion
   "christianchiarulli/nvim-cmp",

@@ -83,7 +83,7 @@ local function attach_navic(client, bufnr)
   navic.attach(client, bufnr)
 end
 
-local function attach_lsp_(client, bufnr)
+local function attach_lsp_signature(client, bufnr)
   local status_ok, signature = pcall(require, "lsp_signature")
   if not status_ok then
     return

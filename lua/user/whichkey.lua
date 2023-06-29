@@ -44,7 +44,6 @@ local m_mappings = {
 local mappings = {
   -- ["1"] = "which_key_ignore",
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
-  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   v = { "<cmd>vsplit<cr>", "vsplit" },
   h = { "<cmd>split<cr>", "split" },
@@ -63,7 +62,35 @@ local mappings = {
   -- P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
   -- ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
-  ["gy"] = "Link",
+  b = {
+    name = "Barbar",
+    c =  { "<cmd>BufferClose<cr>", "Close"},
+    p =  { "<cmd>BufferPrevious<cr>", "Previous(<A-,>)"},
+    n =  { "<cmd>BufferNext<cr>", "Next(<A-.>)"},
+    p =  { "<cmd>BufferPin<cr>", "Toggle Pin"},
+    m = {
+      name = "Move",
+      p = { "<cmd>BufferMovePrevious<cr>", "Previous"},
+      n = { "<cmd>BufferMoveNext<cr>", "Next"},
+    },
+    o = {
+      name = "Order",
+      n = { "<cmd>BufferOrderByBufferNumber<cr>", "Number"},
+      d = { "<cmd>BufferOrderByBufferDirectory<cr>", "Directory"},
+      l = { "<cmd>BufferOrderByBufferLanguage<cr>", "Language"},
+      w = { "<cmd>BufferOrderByWindowNumber<cr>", "Window Number"},
+    },
+    ["1"] = {"<cmd>BufferGoto 1<cr>", "Go to buffer 1(<A-1>)"},
+    ["2"] = {"<cmd>BufferGoto 2<cr>", "Go to buffer 2(<A-2>)"},
+    ["3"] = {"<cmd>BufferGoto 3<cr>", "Go to buffer 3(<A-3>)"},
+    ["4"] = {"<cmd>BufferGoto 4<cr>", "Go to buffer 4(<A-4>)"},
+    ["5"] = {"<cmd>BufferGoto 5<cr>", "Go to buffer 5(<A-5>)"},
+    ["6"] = {"<cmd>BufferGoto 6<cr>", "Go to buffer 6(<A-6>)"},
+    ["7"] = {"<cmd>BufferGoto 7<cr>", "Go to buffer 7(<A-7>)"},
+    ["8"] = {"<cmd>BufferGoto 8<cr>", "Go to buffer 8(<A-8>)"},
+    ["9"] = {"<cmd>BufferGoto 9<cr>", "Go to buffer 9(<A-9>)"},
+    ["0"] = {"<cmd>BufferGoto 0<cr>", "Go to buffer last(<A-0>)"},
+  },
 
   B = {
     name = "Browse",
@@ -72,15 +99,6 @@ local mappings = {
     d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
     f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
     m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
-  },
-
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
 
   o = {
