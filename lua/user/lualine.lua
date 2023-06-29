@@ -437,9 +437,15 @@ local location = {
 local encoding = {
   "encoding",
   fmt = function(str)
-    return hl_str(" ", "SLSep") .. hl_str(str, "SLLocation") .. hl_str("", "SLSep")
+    return hl_str(" ", "SLSep") .. hl_str(str, "SLLocation") .. hl_str(" ", "SLSep")
   end,
   padding = 0,
+}
+
+local lazy = {
+  require("lazy.status").updates,
+  cond = require("lazy.status").has_updates,
+  color = { fg = "#ff9e64" },
 }
 
 lualine.setup {
@@ -461,7 +467,7 @@ lualine.setup {
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
-    lualine_x = { lanuage_server, spaces, filetype, encoding },
+    lualine_x = { lanuage_server, spaces, filetype, encoding, lazy },
     lualine_y = {},
     lualine_z = { location, progress },
   },

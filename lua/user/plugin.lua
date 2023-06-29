@@ -1,127 +1,130 @@
 local fn = vim.fn
-local ensure_packer = function()
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    print("Installing packer close and reopen Neovim...")
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  print("Installing lazy.nvim close and reopen Neovim...")
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-local status_ok, packer = pcall(require, "packer")
+local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
   return
 end
 
-return packer.startup(function(use)
+return lazy.setup {
   -- Plugin Mangager
-  use("wbthomason/packer.nvim")
+  "folke/lazy.nvim",
 
   -- Lua Development
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+  "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
-  use("b0o/SchemaStore.nvim")
+  "neovim/nvim-lspconfig", -- enable LSP
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "b0o/SchemaStore.nvim",
+  "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
+  "ray-x/lsp_signature.nvim",
+  "simrat39/symbols-outline.nvim",
+  "SmiteshP/nvim-navic",
 
   -- Rust
-  use("simrat39/rust-tools.nvim")
+  "simrat39/rust-tools.nvim",
 
   -- Debugging
-  use("mfussenegger/nvim-dap")
+  "mfussenegger/nvim-dap",
 
   -- Completion
-  use("christianchiarulli/nvim-cmp")
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("hrsh7th/cmp-cmdline") -- cmdline completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-emoji")
-  use("hrsh7th/cmp-nvim-lua")
+  "christianchiarulli/nvim-cmp",
+  "hrsh7th/cmp-buffer", -- buffer completions
+  "hrsh7th/cmp-path", -- path completions
+  "hrsh7th/cmp-cmdline", -- cmdline completions
+  "saadparwaiz1/cmp_luasnip", -- snippet completions
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-emoji",
+  "hrsh7th/cmp-nvim-lua",
 
   -- Snippet
-  use("L3MON4D3/LuaSnip") --snippet engine
-  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  "L3MON4D3/LuaSnip", --snippet engine
+  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
   -- Syntax/Treesitter
-  use("nvim-treesitter/nvim-treesitter")
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("p00f/nvim-ts-rainbow")
-  use("nvim-treesitter/playground")
-  use("windwp/nvim-ts-autotag")
-  use("nvim-treesitter/nvim-treesitter-textobjects")
-  use("kylechui/nvim-surround")
+  "nvim-treesitter/nvim-treesitter",
+  "JoosepAlviste/nvim-ts-context-commentstring",
+  "p00f/nvim-ts-rainbow",
+  "nvim-treesitter/playground",
+  "windwp/nvim-ts-autotag",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "kylechui/nvim-surround",
 
   -- Fuzzy Finder/Telescope
-  use("nvim-telescope/telescope.nvim")
-  use("nvim-telescope/telescope-media-files.nvim")
-  use("tom-anders/telescope-vim-bookmarks.nvim")
+  "nvim-telescope/telescope.nvim",
+  "nvim-telescope/telescope-media-files.nvim",
+  "tom-anders/telescope-vim-bookmarks.nvim",
 
   -- Color
-  use("NvChad/nvim-colorizer.lua")
-  use("nvim-colortils/colortils.nvim")
+  "NvChad/nvim-colorizer.lua",
+  "nvim-colortils/colortils.nvim",
 
   -- Colorschemes
-  use("lunarvim/onedarker.nvim")
+  "lunarvim/onedarker.nvim",
 
   -- Utility
-  use("rcarriga/nvim-notify")
+  "rcarriga/nvim-notify",
+  "folke/which-key.nvim",
 
   -- Icon
-  use("kyazdani42/nvim-web-devicons")
+  "kyazdani42/nvim-web-devicons",
 
   -- Statusline
-  use("christianchiarulli/lualine.nvim")
+  "christianchiarulli/lualine.nvim",
 
   -- Startup
-  use("goolord/alpha-nvim")
+  "goolord/alpha-nvim",
 
   -- Indent
-  use("lukas-reineke/indent-blankline.nvim")
+  "lukas-reineke/indent-blankline.nvim",
 
   -- File Explorer
-  use("kyazdani42/nvim-tree.lua")
+  "kyazdani42/nvim-tree.lua",
 
   -- Comment
-  use("numToStr/Comment.nvim")
-  use("folke/todo-comments.nvim")
+  "numToStr/Comment.nvim",
+  "folke/todo-comments.nvim",
 
   -- Terminal
-  use("akinsho/toggleterm.nvim")
+  "akinsho/toggleterm.nvim",
 
   -- Project
-  use("ahmedkhalf/project.nvim")
-  use("windwp/nvim-spectre")
+  "ahmedkhalf/project.nvim",
+  "windwp/nvim-spectre",
 
   -- Session
-  use("rmagatti/auto-session")
-  use("rmagatti/session-lens")
+  "rmagatti/auto-session",
+  "rmagatti/session-lens",
 
   -- Quickfix
-  use("kevinhwang91/nvim-bqf")
+  "kevinhwang91/nvim-bqf",
 
   -- Editing Support
-  use("windwp/nvim-autopairs")
+  "windwp/nvim-autopairs",
   -- use("andymass/vim-matchup")
-  use("folke/zen-mode.nvim")
-  use("karb94/neoscroll.nvim")
+  "folke/zen-mode.nvim",
+  "karb94/neoscroll.nvim",
   -- use("junegunn/vim-slash")
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
-  use("f-person/git-blame.nvim")
+  "lewis6991/gitsigns.nvim",
+  "f-person/git-blame.nvim",
 
   -- Tab
-  use("romgrk/barbar.nvim")
+  "romgrk/barbar.nvim",
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+}

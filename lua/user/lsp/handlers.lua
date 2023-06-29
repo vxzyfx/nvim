@@ -83,6 +83,19 @@ local function attach_navic(client, bufnr)
   navic.attach(client, bufnr)
 end
 
+local function attach_lsp_(client, bufnr)
+  local status_ok, signature = pcall(require, "lsp_signature")
+  if not status_ok then
+    return
+  end
+  signature.on_attach({      
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "rounded"
+      }
+    }, bufnr)
+end
+
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
@@ -107,6 +120,7 @@ end
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   attach_navic(client, bufnr)
+  attach_lsp_signature(client, bufnr)
 
   if client.name == "tsserver" then
     require("lsp-inlayhints").on_attach(client, bufnr)
