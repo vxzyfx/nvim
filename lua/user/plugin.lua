@@ -77,9 +77,13 @@ return lazy.setup {
   -- Colorschemes
   "lunarvim/onedarker.nvim",
 
+  -- Motion
+  "phaazon/hop.nvim",
+
   -- Utility
   "rcarriga/nvim-notify",
   "folke/which-key.nvim",
+  "lalitmee/browse.nvim",
 
   -- Icon
   "kyazdani42/nvim-web-devicons",

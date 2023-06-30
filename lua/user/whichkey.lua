@@ -234,19 +234,11 @@ local mappings = {
   -- },
 
   S = {
-    -- name = "Session",
-    -- s = { "<cmd>SaveSession<cr>", "Save" },
-    -- l = { "<cmd>LoadLastSession!<cr>", "Load Last" },
-    -- d = { "<cmd>LoadCurrentDirSession!<cr>", "Load Last Dir" },
-    -- f = { "<cmd>Telescope sessions save_current=false<cr>", "Find Session" },
-    name = "SnipRun",
-    c = { "<cmd>SnipClose<cr>", "Close" },
-    f = { "<cmd>%SnipRun<cr>", "Run File" },
-    i = { "<cmd>SnipInfo<cr>", "Info" },
-    m = { "<cmd>SnipReplMemoryClean<cr>", "Mem Clean" },
-    r = { "<cmd>SnipReset<cr>", "Reset" },
-    t = { "<cmd>SnipRunToggle<cr>", "Toggle" },
-    x = { "<cmd>SnipTerminate<cr>", "Terminate" },
+    name = "Session",
+    s = { "<cmd>SaveSession<cr>", "Save" },
+    l = { "<cmd>LoadLastSession!<cr>", "Load Last" },
+    d = { "<cmd>LoadCurrentDirSession!<cr>", "Load Last Dir" },
+    f = { "<cmd>Telescope sessions save_current=false<cr>", "Find Session" },
   },
 
   t = {
@@ -283,9 +275,7 @@ local vopts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 local vmappings = {
-  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment" },
-  s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
-  -- z = { "<cmd>TZNarrow<cr>", "Narrow" },
+  ["\\"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment" },
 }
 
 local setup = {
