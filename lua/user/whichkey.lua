@@ -22,23 +22,10 @@ local m_opts = {
 }
 
 local m_mappings = {
-  a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-  c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
-  b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-  l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
-  j = { "<cmd>silent BookmarkNext<cr>", "Next" },
-  s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
-  k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
-  S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
-  -- s = {
-  --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-  --   "Show",
-  -- },
-  x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
-  [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+  a = { "<cmd>lua require('bookmarks').add_bookmarks()<cr>", "Add(<leader>z)" },
+  d = { "<cmd>lua require('bookmarks.list').delete_on_virt()<cr>", "Delete" },
+  m = { "<cmd>lua require('bookmarks').toggle_bookmarks()<cr>", "Toggle(<tab><tab>)" },
+  s = { "<cmd>lua require'bookmarks.list'.show_desc()<cr>", "Show" },
 }
 
 local mappings = {
@@ -52,16 +39,6 @@ local mappings = {
   q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
   ["\\"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   c = { "<cmd>BufferClose<CR>", "Close Buffer" },
-
-  -- :lua require'lir.float'.toggle()
-  -- ["f"] = {
-  --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-  --   "Find files",
-  -- },
-  -- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  -- P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
-  -- ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
   b = {
     name = "Barbar",
     c =  { "<cmd>BufferClose<cr>", "Close"},
@@ -294,13 +271,7 @@ local mappings = {
     r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
   },
 
-  -- z = {
-  --   name = "Zen",
-  --   z = { "<cmd>TZAtaraxis<cr>", "Zen" },
-  --   m = { "<cmd>TZMinimalist<cr>", "Minimal" },
-  --   n = { "<cmd>TZNarrow<cr>", "Narrow" },
-  --   f = { "<cmd>TZFocus<cr>", "Focus" },
-  -- },
+  z = { "<cmd>lua require('bookmarks').add_bookmarks()<cr>", "AddMark"},
 }
 
 local vopts = {

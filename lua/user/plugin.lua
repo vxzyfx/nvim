@@ -68,7 +68,7 @@ return lazy.setup {
   -- Fuzzy Finder/Telescope
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-media-files.nvim",
-  "tom-anders/telescope-vim-bookmarks.nvim",
+  "crusj/bookmarks.nvim",
 
   -- Color
   "NvChad/nvim-colorizer.lua",
