@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-
 surround.setup {
   keymaps = { -- vim-surround style keymaps
     insert = "<M-g>s",
