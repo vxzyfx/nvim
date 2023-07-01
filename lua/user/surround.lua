@@ -3,10 +3,11 @@ if not status_ok then
   return
 end
 
+
 surround.setup {
   keymaps = { -- vim-surround style keymaps
-    insert = "<C-g>s",
-    insert_line = "<C-g>S",
+    insert = "<M-g>s",
+    insert_line = "<C-a>",
     normal = "s",
     normal_cur = "ss",
     normal_line = "S",
@@ -73,4 +74,3 @@ surround.setup {
 
 -- keymap("n", "<leader>'", [[ysiw']], opts)
 
-vim.cmd [[nmap <leader>' siw']]

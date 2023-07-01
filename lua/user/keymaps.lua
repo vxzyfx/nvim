@@ -23,9 +23,11 @@ ni_keymap('<A-8>', '<Cmd>BufferGoto 8<CR>')
 ni_keymap('<A-9>', '<Cmd>BufferGoto 9<CR>')
 ni_keymap('<A-0>', '<Cmd>BufferLast<CR>')
 
-keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
+-- keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
 keymap("n", "<tab><tab>", "<cmd>lua require('bookmarks').toggle_bookmarks()<cr>", opts)
 keymap("n", "<C-i>", "<C-i>", opts)
+keymap("n", "<S-CR>", "o", opts)
+keymap("i", "<S-CR>", "<esc>o", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -110,8 +112,6 @@ keymap("v", "p", '"_dP', opts)
 -- keymap("n", "<c-h>", "<cmd>nohlsearch<cr>", opts)
 -- NOTE: the fact that tab and ctrl-i are the same is stupid
 -- keymap("n", "<TAB>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
-keymap("n", "<F1>", ":e ~/Notes/<cr>", opts)
 keymap("n", "<F3>", ":e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
@@ -156,27 +156,10 @@ M.show_documentation = function()
 end
 vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentation()<CR>", opts)
 
--- vim.api.nvim_set_keymap("n", "<m-b>", "<cmd>lua require('user.bfs').open()<cr>", opts)
--- vim.api.nvim_set_keymap("n", "<m-b>", "<cmd>JABSOpen<cr>", opts)
--- vim.api.nvim_set_keymap("n", "<m-e>", "NvimTreeToggle<cr>", opts)
--- vim.api.nvim_set_keymap(
---   "n",
---   "<m-f>",
---   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
---   opts
--- )
 -- Comment
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
 
--- vim.api.nvim_set_keymap(
---   "n",
---   "<tab>",
---   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
---   opts
--- )
-
--- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('telescope.builtin').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", opts)
 
 vim.api.nvim_set_keymap(
   "n",
@@ -184,10 +167,8 @@ vim.api.nvim_set_keymap(
   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
   opts
 )
--- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
 vim.api.nvim_set_keymap("n", "<m-g>", "<cmd>Telescope git_branches<cr>", opts)
-vim.api.nvim_set_keymap("n", "<s-enter>", "<cmd>TodoQuickFix<cr>", opts)
--- l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
+vim.api.nvim_set_keymap("n", "<C-enter>", "<cmd>TodoQuickFix<cr>", opts)
 
 vim.cmd [[
   function! QuickFixToggle()
