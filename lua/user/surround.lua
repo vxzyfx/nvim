@@ -5,7 +5,7 @@ end
 
 surround.setup {
   keymaps = { -- vim-surround style keymaps
-    insert = "<M-g>s",
+    insert = "<C-g>s",
     insert_line = "<C-a>",
     normal = "s",
     normal_cur = "ss",
