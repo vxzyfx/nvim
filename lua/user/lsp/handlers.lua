@@ -107,7 +107,7 @@ local function lsp_keymaps(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gf", "<cmd>Format<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<cr><cr>", "<cmd>lua vim.lsp.buf.code_action({ filter = function(a) return a.isPreferred end, apply = true })<cr>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<cr><cr>", "<cmd>lua vim.lsp.buf.code_action({ filter = function(a) return a.isPreferred end, apply = true })<cr> <cmd>w<cr>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<Space><cr>", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<cr>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
