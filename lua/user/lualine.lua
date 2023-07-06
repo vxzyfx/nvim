@@ -442,11 +442,19 @@ local encoding = {
   padding = 0,
 }
 
+local fileformat = {
+  "fileformat",
+  fmt = function(str)
+    return hl_str(" ", "SLSep") .. hl_str(str, "SLLocation") .. hl_str(" ", "SLSep")
+  end,
+  padding = 0,
+}
 local lazy = {
   require("lazy.status").updates,
   cond = require("lazy.status").has_updates,
   color = { fg = "#ff9e64" },
 }
+
 
 lualine.setup {
   options = {
@@ -467,7 +475,7 @@ lualine.setup {
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
-    lualine_x = { lanuage_server, spaces, filetype, encoding, lazy },
+    lualine_x = { lanuage_server, spaces, filetype, fileformat, encoding, lazy },
     lualine_y = {},
     lualine_z = { location, progress },
   },
@@ -479,6 +487,7 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {},
   },
-  tabline = {},
-  extensions = {},
+  extensions = {
+    "nvim-tree"
+  },
 }
