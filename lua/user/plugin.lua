@@ -58,8 +58,8 @@ return lazy.setup {
 
   -- Syntax/Treesitter
   "nvim-treesitter/nvim-treesitter",
+  "hiphish/rainbow-delimiters.nvim",
   "JoosepAlviste/nvim-ts-context-commentstring",
-  "p00f/nvim-ts-rainbow",
   "nvim-treesitter/playground",
   "windwp/nvim-ts-autotag",
   "nvim-treesitter/nvim-treesitter-textobjects",

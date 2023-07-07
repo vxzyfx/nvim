@@ -3,6 +3,30 @@ if not status_ok then
   return
 end
 
+local status_ok, rainbow_delimiters = pcall(require, "rainbow-delimiters")
+if not status_ok then
+  return
+end
+
+vim.g.rainbow_delimiters = {
+    strategy = {
+        [''] = rainbow_delimiters.strategy['global'],
+        vim = rainbow_delimiters.strategy['local'],
+    },
+    query = {
+        [''] = 'rainbow-delimiters',
+        lua = 'rainbow-blocks',
+    },
+    highlight = {
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+        'RainbowDelimiterRed',
+    },
+}
 -- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
 -- ft_to_parser.motoko = "typescript"
 
@@ -35,22 +59,6 @@ configs.setup {
   autotag = {
     enable = true,
     disable = { "xml", "markdown" },
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = false,
-    colors = {
-      -- "#68a0b0",
-      -- "#946EaD",
-      -- "#c7aA6D",
-      "Gold",
-      "Orchid",
-      "DodgerBlue",
-      -- "Cornsilk",
-      -- "Salmon",
-      -- "LawnGreen",
-    },
-    disable = { "html" },
   },
   playground = {
     enable = true,
