@@ -84,6 +84,7 @@ return lazy.setup {
   "rcarriga/nvim-notify",
   "folke/which-key.nvim",
   "lalitmee/browse.nvim",
+  "tmillr/sos.nvim",
 
   -- Icon
   "kyazdani42/nvim-web-devicons",
